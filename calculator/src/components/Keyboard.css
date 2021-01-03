@@ -1,0 +1,49 @@
+div.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 100%;
+  height: 85%;
+  padding: 10px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:active {
+  background-color: #6e8898;
+}
+
+button {
+  height: calc(100% / 6 - 5px);
+  width: 30%;
+  transition: 0.2s;
+  font-size: 3.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+  border: 3px solid #e2c044;
+  box-shadow: 0 0 1px 1px #e2c044;
+}
+
+button * {
+  font-size: 2.8rem;
+}
+
+button.operation {
+  height: 10%;
+  width: 21%;
+}
+
+button:nth-last-child(1),
+button:nth-last-child(2) {
+  width: 45%;
+}
+button:nth-last-child(3) {
+  width: 30%;
+  height: auto;
+}

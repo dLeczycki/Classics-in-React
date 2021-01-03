@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Calculator";
+  src: local("Calculator"), url(./fonts/Calculator.ttf) format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Calculator", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+button {
+  font-family: "Calculator", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}

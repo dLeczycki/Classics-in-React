@@ -1,0 +1,16 @@
+div.calculator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90vh;
+  width: 60vh;
+  min-height: 600px;
+  min-width: 400px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  background-color: #2e5266;
+  border-radius: 3px;
+}
