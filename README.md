@@ -1,6 +1,6 @@
 # Classics-in-React
 
-A few classical projects coded with React. :rocket:
+A few classical projects coded with React. :rocket: :rocket: :rocket:
 
 # How to run
 
