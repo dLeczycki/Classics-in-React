@@ -101,7 +101,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        TODO APP
+        <h1>TODO APP</h1>
         <AddTask />
         <TaskList
           tasks={tasks}
