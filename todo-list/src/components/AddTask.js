@@ -28,8 +28,8 @@ class AddTask extends Component {
   };
 
   handleClick = (e) => {
-    const { text, checked, date } = this.state;
-    const result = this.props.addTask(text, checked, date);
+    const { text, date, checked } = this.state;
+    const result = this.props.addTask(text, date, checked);
     if (result) {
       this.setState({
         text: "",

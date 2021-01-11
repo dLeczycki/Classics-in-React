@@ -2,26 +2,35 @@ import React from "react";
 import Task from "./Task";
 
 const TaskList = (props) => {
-  const activeTasks = props.tasks
-    .filter((task) => task.active)
-    .map((task) => (
-      <Task
-        key={task.id}
-        task={task}
-        delete={props.delete}
-        change={props.change}
-      />
-    ));
-  const doneTasks = props.tasks
-    .filter((task) => !task.active)
-    .map((task) => (
-      <Task
-        key={task.id}
-        task={task}
-        delete={props.delete}
-        change={props.change}
-      />
-    ));
+  const active = props.tasks.filter((task) => task.active);
+  const done = props.tasks.filter((task) => !task.active);
+
+  done.sort((a, b) => b.finishDate - a.finishDate);
+  active.sort((a, b) => {
+    a = a.text.toLowerCase();
+    b = b.text.toLowerCase();
+    if (a < b) return -1;
+    else if (a > b) return 1;
+    return 0;
+  });
+
+  const activeTasks = active.map((task) => (
+    <Task
+      key={task.id}
+      task={task}
+      delete={props.delete}
+      change={props.change}
+    />
+  ));
+  const doneTasks = done.map((task) => (
+    <Task
+      key={task.id}
+      task={task}
+      delete={props.delete}
+      change={props.change}
+    />
+  ));
+
   return (
     <>
       <div className="active">
