@@ -1,0 +1,79 @@
+div.modal-gray-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+section.modal {
+  position: fixed;
+  padding: 1em;
+  width: 400px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+section.modal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section.modal header h1 {
+  margin-left: 0.6em;
+  font-size: 2em;
+}
+
+section.modal header button {
+  margin-right: 0.4em;
+}
+
+section.modal main {
+  margin: 1em auto 2em auto;
+  width: 80%;
+  height: unset;
+  display: flex;
+  flex-direction: column;
+}
+
+section.modal main form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+section.modal main form label {
+  align-self: flex-start;
+}
+
+section.modal footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+section.modal footer button {
+  padding: 0.4em 1.5em;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+section.modal footer button.close {
+  border: 2px solid crimson;
+}
+
+section.modal footer button.close:hover {
+  background-color: crimson;
+  color: white;
+}
+
+section.modal footer button.ok {
+  border: 2px solid green;
+}
+
+section.modal footer button.ok:hover {
+  background-color: green;
+  color: white;
+}
