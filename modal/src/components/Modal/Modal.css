@@ -12,7 +12,8 @@ section.modal {
   padding: 1em;
   width: 400px;
   background-color: #fff;
-  border-radius: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,8 +28,20 @@ section.modal header h1 {
   font-size: 2em;
 }
 
-section.modal header button {
+section.modal header button.close {
+  width: 2.4em;
+  height: 2.4em;
+  font-size: 1em;
   margin-right: 0.4em;
+  border-radius: 50%;
+  color: cadetblue;
+  border: 2px solid cadetblue;
+  transition: 0.3;
+}
+
+section.modal header button.close:hover {
+  background-color: cadetblue;
+  color: white;
 }
 
 section.modal main {
@@ -51,11 +64,12 @@ section.modal main form label {
 
 section.modal footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 
 section.modal footer button {
   padding: 0.4em 1.5em;
+  margin-right: 1em;
   font-size: 16px;
   background-color: #fff;
 }
