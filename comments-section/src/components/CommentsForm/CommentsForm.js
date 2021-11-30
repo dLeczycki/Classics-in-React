@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {add} from '../../state/actions/commentsActions';
 
 import './CommentsForm.css';
 
 const CommentsForm = () => {
   const dispatch = useDispatch();
+  const {username, loggedIn} = useSelector(state => state.login);
 
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState('');
@@ -14,7 +15,10 @@ const CommentsForm = () => {
     let formIsValid = true;
     
     if(comment === '') {
-      setCommentError('Comment cannot be empty');
+      setCommentError('Comment cannot be empty.');
+      formIsValid = false;
+    } else if (!loggedIn) {
+      setCommentError('You must be logged in.');
       formIsValid = false;
     }
     else setCommentError('');
@@ -32,7 +36,7 @@ const CommentsForm = () => {
 
     if(!formIsValid) return;
 
-    dispatch(add({author: 'Me', comment: comment}))
+    dispatch(add({author: username, comment: comment}))
     
     setComment('');
   }
