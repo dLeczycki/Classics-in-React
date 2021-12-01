@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 
 import Comment from '../Comment/Comment';
 
-import './Comments.css';
+import './CommentsList.css';
 
 const CommentsList = () => {
   const comments = useSelector(state => state.comments);
@@ -12,6 +12,7 @@ const CommentsList = () => {
 
   return ( 
     <section className="comments">
+      <h2>Comments</h2>
       {commentsElements}
     </section>
    );

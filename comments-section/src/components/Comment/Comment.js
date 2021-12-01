@@ -48,12 +48,22 @@ const Comment = (props) => {
     
     {isInEditionMode ? 
     <>
-      <p>{author.username} : <textarea name="comment" id="comment" value={commentInput} onChange={handleCommentChange}/></p>
+      <div className="author">
+        <img src={author.photo} alt="" />
+        <p className="author-name">{author.username}</p> 
+        <p className="timestamp">&#183; timestamp</p>
+      </div>
+      <textarea name="comment" id="comment" value={commentInput} onChange={handleCommentChange}/>
       <button onClick={handleSaveComment}>Save</button>
       <button onClick={handleChangeEditionMode}>Cancel</button>
     </> : 
     <>
-      <p>{author.username} : {comment}</p>
+    <div className="author">
+      <img src={author.photo} alt="" />
+      <p className="author-name">{author.username}</p> 
+      <p className="timestamp">&#183; timestamp</p>
+    </div>
+      <p className="comment">{comment}</p>
       {editionBlock}
     </>}
   </div> );

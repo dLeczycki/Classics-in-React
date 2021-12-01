@@ -43,14 +43,14 @@ const CommentsForm = ({login}) => {
 
   return ( 
   <section className="comments-form">
+    <h3>Add comment</h3>
     <form onSubmit={handleSendComment}>
       <label htmlFor="comment">
-        Add comment:
         <textarea name="comment" id="comment" value={comment} onChange={handleChangeComment}/>
-        <span className="error">{commentError}</span>
       </label>
       <button type="submit">Send</button>
     </form>
+    <span className="error">{commentError}</span>
   </section> );
 }
 

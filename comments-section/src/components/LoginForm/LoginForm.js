@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {useDispatch, connect} from 'react-redux';
 import {logIn, logOut} from '../../state/actions/loginActions';
 
+import './LoginForm.css';
+
 const LoginForm = ({login}) => {
   const dispatch = useDispatch();
   const {user, loggedIn} = login;
@@ -22,20 +24,21 @@ const LoginForm = ({login}) => {
   }
 
   return ( 
-    <>
+    
+    <form className="login" autoComplete="off">
       {
       !loggedIn ? 
-        <form>
-          <label htmlFor="login">Login: <input type="text" name="login" id="login" value={usernameInput} onChange={handleUsernameChange}/></label>
+        <>
+          <input type="text" name="login" id="login" value={usernameInput} onChange={handleUsernameChange} placeholder="Username..."/>
           <button type="submit" onClick={handleLogin}>Sign in</button>
-        </form> 
+        </>
       :
         <>
           <p>Hello, {user.username}!</p>
           <button type="submit" onClick={handleLogout}>Sign out</button>
         </>
       }
-    </>
+      </form> 
    );
 }
 
