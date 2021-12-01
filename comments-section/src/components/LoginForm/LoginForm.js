@@ -1,39 +1,48 @@
 import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, connect} from 'react-redux';
 import {logIn, logOut} from '../../state/actions/loginActions';
 
-const LoginForm = () => {
+const LoginForm = ({login}) => {
   const dispatch = useDispatch();
-  const loggedIn = useSelector(state => state.login.loggedIn);
-  const [username, setUsername] = useState('');
+  const {user, loggedIn} = login;
+  const [usernameInput, setUsernameInput] = useState('');
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setUsernameInput(e.target.value);
   }
 
-  const handleLogin = () => {
-    dispatch(logIn({username}));
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(logIn({username: usernameInput}));
   }
 
   const handleLogout = () => {
+    setUsernameInput('');
     dispatch(logOut());
   }
 
   return ( 
     <>
-      {!loggedIn ? 
-      <form>
-        <label htmlFor="login">Login: <input type="text" name="login" id="login" value={username} onChange={handleUsernameChange}/></label>
-        <button type="submit" onClick={handleLogin}>Sign in</button>
-      </form> 
+      {
+      !loggedIn ? 
+        <form>
+          <label htmlFor="login">Login: <input type="text" name="login" id="login" value={usernameInput} onChange={handleUsernameChange}/></label>
+          <button type="submit" onClick={handleLogin}>Sign in</button>
+        </form> 
       :
-      <>
-        <p>Hello, {username}!</p>
-        <button type="submit" onClick={handleLogout}>Sign out</button>
-      </>}
-    
+        <>
+          <p>Hello, {user.username}!</p>
+          <button type="submit" onClick={handleLogout}>Sign out</button>
+        </>
+      }
     </>
    );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    login: state.login,
+  }
+}
  
-export default LoginForm;
+export default connect(mapStateToProps)(LoginForm);

@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, connect} from 'react-redux';
 import {remove, edit} from '../../state/actions/commentsActions';
 
 import './Comment.css';
 
-const Comment = ({commentDetails}) => {
-  const dispatch = useDispatch();
+const Comment = (props) => {
+  const {commentDetails, user} = props;
   const {id, author, comment} = commentDetails;
 
+  const dispatch = useDispatch();
+
   const [isInEditionMode, setIsInEditionMode] = useState(false);
-  const [commentState, setCommentState] = useState(comment);
+  const [commentInput, setCommentStateInput] = useState(comment);
 
   const handleChangeEditionMode = () => {
-    setCommentState(comment);
+    setCommentStateInput(comment);
     setIsInEditionMode(prevState => !prevState);
   }
 
@@ -21,28 +23,46 @@ const Comment = ({commentDetails}) => {
   }
 
   const handleCommentChange = (e) => {
-    setCommentState(e.target.value);
+    setCommentStateInput(e.target.value);
   }
 
   const handleSaveComment = (e) => {
-    dispatch(edit({id, author, comment: commentState}));
+    dispatch(edit({id, author, comment: commentInput}));
     handleChangeEditionMode();
   }
+
+  const editionBlock = (
+    <>
+    {(user?.id === author.id) ? 
+      <>
+      <button onClick={handleRemove}>X</button>
+      <button onClick={handleChangeEditionMode}>Edit</button>
+      </>
+      : 
+      <></>
+    }
+    </>
+  )
 
   return ( <div className="comment">
     
     {isInEditionMode ? 
     <>
-      <p>{author} : <textarea name="comment" id="comment" value={commentState} onChange={handleCommentChange}/></p>
+      <p>{author.username} : <textarea name="comment" id="comment" value={commentInput} onChange={handleCommentChange}/></p>
       <button onClick={handleSaveComment}>Save</button>
       <button onClick={handleChangeEditionMode}>Cancel</button>
     </> : 
     <>
-      <p>{author} : {comment}</p>
-      <button onClick={handleRemove}>X</button>
-      <button onClick={handleChangeEditionMode}>Edit</button>
+      <p>{author.username} : {comment}</p>
+      {editionBlock}
     </>}
   </div> );
 }
- 
-export default Comment;
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.login.user,
+  }
+}
+
+export default connect(mapStateToProps)(Comment);
