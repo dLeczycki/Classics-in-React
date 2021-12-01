@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, connect} from 'react-redux';
 import {add} from '../../state/actions/commentsActions';
 
 import './CommentsForm.css';
 
-const CommentsForm = () => {
+const CommentsForm = ({login}) => {
   const dispatch = useDispatch();
-  const {username, loggedIn} = useSelector(state => state.login);
+  const {user, loggedIn} = login;
 
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState('');
@@ -36,7 +36,7 @@ const CommentsForm = () => {
 
     if(!formIsValid) return;
 
-    dispatch(add({author: username, comment: comment}))
+    dispatch(add({author: user, comment: comment}))
     
     setComment('');
   }
@@ -53,5 +53,11 @@ const CommentsForm = () => {
     </form>
   </section> );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    login: state.login,
+  }
+}
  
-export default CommentsForm;
+export default connect(mapStateToProps)(CommentsForm);
