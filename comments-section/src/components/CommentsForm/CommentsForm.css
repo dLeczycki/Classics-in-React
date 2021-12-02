@@ -15,19 +15,7 @@ section.comments-form form label {
 }
 
 section.comments-form form label textarea {
-  padding: .6em;
-  height: calc(16px * 10);
-  font-size: 16px;
-  line-height: 1.4em;
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-  border: none;
-  border-bottom: 4px solid var(--secondary-color);
   border-bottom-left-radius: 5px;
-  outline: none;
-  resize: none;
-  transition: .3s;
 }
 
 section.comments-form form label textarea:focus {
