@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {useDispatch, connect} from 'react-redux';
 import {remove, edit} from '../../state/actions/commentsActions';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes, faEdit} from '@fortawesome/free-solid-svg-icons';
 
 import './Comment.css';
+import CommentAuthor from './CommentAuthor/CommentAuthor';
+import CommentControlGroup from './CommentControlGroup/CommentControlGroup';
+import CommentEditGroup from './CommentEditGroup/CommentEditGroup';
 
 const Comment = (props) => {
   const {commentDetails, user} = props;
@@ -35,45 +36,22 @@ const Comment = (props) => {
 
   const isAuthorOfComment = (user.id === author.id);
 
-  const createCommentControlGroup = () => {
-    if(isAuthorOfComment && !isInEditionMode) {
-      return (
-        <div className="comment-control-group">
-          <button className="edit-comment" onClick={handleChangeEditionMode}><FontAwesomeIcon icon={faEdit}/></button>
-          <button className="delete-comment" onClick={handleRemove}><FontAwesomeIcon icon={faTimes}/></button>
-        </div>
-      )
-    } else if(isAuthorOfComment){
-      return (
-        <div className="comment-control-group">
-          <button className="delete-comment" onClick={handleRemove}><FontAwesomeIcon icon={faTimes}/></button>
-        </div>
-      )
-    }
-    return null;
-  }
-
   return ( 
-  <div className="comment">
-    <div className="author">
-      <img src={author.photo} alt="" />
-      <p className="author-name">{author.username}</p> 
-      <p className="timestamp">&#183; timestamp</p>
-      {createCommentControlGroup()}
+  <section className="comment">
+    <div className="comment-header">
+      <CommentAuthor author={author} />
+      <CommentControlGroup isAuthorOfComment={isAuthorOfComment} isInEditionMode={isInEditionMode} handleChangeEditionMode={handleChangeEditionMode} handleRemove={handleRemove}/>
     </div>
-    
-    {isInEditionMode ? 
-    <div className="comment-edit-group">
-      <textarea name="comment" className="comment" value={commentInput} onChange={handleCommentChange}/>
-      <div className="comment-edit-button-group">
-        <button onClick={handleSaveComment}>Save</button>
-        <button className="cancel-edit" onClick={handleChangeEditionMode}>Cancel</button>
-      </div>
-    </div> : 
-    <>
-      <p className="comment">{comment}</p>
-    </>}
-  </div> );
+    <div className="comment-body">
+      {
+      isInEditionMode 
+      ? 
+        <CommentEditGroup commentInput={commentInput} handleCommentChange={handleCommentChange} handleSaveComment={handleSaveComment} handleChangeEditionMode={handleChangeEditionMode}/>
+      : 
+        <p className="comment">{comment}</p>
+      }
+    </div>
+  </section> );
 }
 
 const mapStateToProps = (state) => {

@@ -1,0 +1,27 @@
+.comment-edit-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-edit-group textarea {
+  display: block;
+  margin: 0.8em 1em;
+  flex-grow: 1;
+  height: 90px;
+  background-color: var(--main-color);
+  color: var(--light-color);
+  border-bottom: 4px solid var(--main-color);
+  resize: none;
+}
+
+.comment-edit-group textarea:focus {
+  border-color: var(--accent-outline-color);
+}
+
+.comment-edit-group .comment-edit-button-group {
+  align-self: flex-end;
+}
+
+.comment-edit-group .comment-edit-button-group .cancel-edit {
+  margin-left: .2em;
+}

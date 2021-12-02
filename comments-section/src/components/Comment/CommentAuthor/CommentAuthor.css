@@ -1,0 +1,24 @@
+div.author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: .6em;
+}
+
+div.author img {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+div.author p.author-name {
+  margin-left: .4em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+div.author p.timestamp {
+  margin-left: .4em;
+  font-size: .8em;
+  color: var(--accent-color);
+}
