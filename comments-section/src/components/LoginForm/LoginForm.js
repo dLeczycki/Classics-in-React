@@ -18,7 +18,8 @@ const LoginForm = ({login}) => {
     dispatch(logIn({username: usernameInput}));
   }
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     setUsernameInput('');
     dispatch(logOut());
   }

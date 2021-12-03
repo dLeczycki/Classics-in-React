@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useDispatch, connect} from 'react-redux';
+
 import {add} from '../../state/actions/commentsActions';
 
 import './CommentsForm.css';
@@ -36,7 +37,7 @@ const CommentsForm = ({login}) => {
 
     if(!formIsValid) return;
 
-    dispatch(add({author: user, comment: comment}))
+    dispatch(add({author: user, comment: comment, timestamp: new Date()}))
     
     setComment('');
   }

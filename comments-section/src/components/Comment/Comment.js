@@ -39,7 +39,7 @@ const Comment = (props) => {
   return ( 
   <section className="comment">
     <div className="comment-header">
-      <CommentAuthor author={author} />
+      <CommentAuthor author={author} timestamp={commentDetails.timestamp} />
       <CommentControlGroup isAuthorOfComment={isAuthorOfComment} isInEditionMode={isInEditionMode} handleChangeEditionMode={handleChangeEditionMode} handleRemove={handleRemove}/>
     </div>
     <div className="comment-body">

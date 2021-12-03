@@ -11,14 +11,13 @@ div.author img {
   height: 32px;
 }
 
-div.author p.author-name {
-  margin-left: .4em;
+div.author div.author-labels p.author-name {
+  margin-left: .6em;
   font-size: 1.2em;
   font-weight: bold;
 }
 
-div.author p.timestamp {
-  margin-left: .4em;
-  font-size: .8em;
+div.author div.author-labels small.timestamp {
   color: var(--accent-color);
+  font-weight: bold;
 }
